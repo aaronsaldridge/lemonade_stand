@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <title>Lemonade</title>
+    <script>
+      var intCups = 80;
+      var intSugar = 7;
+      var intLemons = 2;
+      var intMoney = 0;
+      var intLemonade = 20;
+      var tvMoney = document.getElementById("money");
+      var tvLemonade = document.getElementById("lemonade");
+      var tvCups = document.getElementById("cups");
+      var tvSugar = document.getElementById("sugar");
+      var tvLemons = document.getElementById("lemons");
+
+      function updateFields() {
+        document.getElementById("money").innerHTML = "Money: $" + intMoney;
+        document.getElementById("lemonade").innerHTML = "Lemonade: " + intLemonade + " cups";
+        document.getElementById("cups").innerHTML = "Cups: " + intCups;
+        document.getElementById("sugar").innerHTML = "Sugar: " + intSugar;
+        document.getElementById("lemons").innerHTML = "Lemons: " + intLemons;
+      }
+      function buyCups() {
+        if (intMoney > 6) {
+          intCups += 100;
+          intMoney -= 7;
+          updateFields();
+        }
+        else {
+          document.getElementById("msg").innterHTML = "Not enough money!";
+        }
+      }
+      function buySugar() {
+        if (intMoney > 2) {
+          intSugar += 8;
+          intMoney -= 3;
+          updateFields();
+        }
+        else {
+          document.getElementById("msg").innterHTML = "Not enough money!";
+        }
+      }
+      function buyLemons() {
+        if (intMoney > 3) {
+          intLemons += 8;
+          intMoney -= 4;
+          updateFields();
+        }
+        else {
+          document.getElementById("msg").innterHTML = "Not enough money!";
+        }
+      }
+      function makePitcher() {
+        if (intCups > 19 && intSugar > 0 && intLemons > 5) {
+          intCups -= 20;
+          intSugar--;
+          intLemons -= 6;
+          intLemonade += 20;
+          updateFields();
+        }
+        else {
+          document.getElementById("msg").innterHTML = "Not enough ingredients!";
+        }
+      }
+      function sell() {
+        if (intLemonade > 0) {
+          intLemonade--;
+          intMoney++;
+          updateFields();
+        }
+        else {
+          document.getElementById("msg").innterHTML = "Make more lemonade!";
+        }
+      }
+      function setup() {
+        updateFields();
+        var timer = setInterval(sell, 15000);
+      }
+    </script>
+    <style>
+      div#instr {
+        position:fixed;
+        top: 10px;
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body onload="setup()">
+    <p id="money">money</p>
+    <p id="lemonade">lemonade</p>
+    <p id="cups">cups</p>
+    <p id="sugar">sugar</p>
+    <p id="lemons">lemons</p>
+    <p>
+    <button type="button" onclick="buyCups()">Cups 100 x $7</button>
+    <button type="button" onclick="buySugar()">Sugar 8 x $3</button>
+    <button type="button" onclick="buyLemons()">Lemons 8 x $4</button><br><br>
+    <button type="button" onclick="makePitcher()">Make 20 Cups of Lemonade</button>
+    <button type="button" onclick="sell()">Sell 1 x $1</button>
+    <div id="instr">
+      20 Cups of Lemonade:<br>
+      <ul>
+      <li>20 Cups
+      <li>1 Sugar
+      <li>6 Lemons
+      </ul>
+      <p>
+      Ingredients:<br>
+      <ul>
+      <li>Cups 100 x $7<br>
+      <li>Sugar 8 x $3<br>
+      <li>Lemons 8 x $4<br>
+      </ul>
+      <p>
+      Each cup of lemonade sells for $1
+    </div>
+    <hr>
+    <div id="msg">
+      notifications
+    </div>
+  </body>
+</html>
+
